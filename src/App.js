@@ -12,7 +12,7 @@ const PRODUCTS = [
 
 const ProductCategoryRow = ({ category }) => (
   <tr>
-    <th>{category}</th>
+    <th colSpan='2'>{category}</th>
   </tr>
 );
 
@@ -35,7 +35,7 @@ const ProductTable = ({ products }) => {
   const rows = [];
   let lastCategory = null;
   products.forEach((product) => {
-    if (product !== lastCategory) {
+    if (product.category !== lastCategory) {
       rows.push(<ProductCategoryRow category={product.category} />);
     }
     rows.push(<ProductRow product={product} key={product.name} />);
@@ -55,6 +55,27 @@ const ProductTable = ({ products }) => {
   );
 };
 
+const SearchBar = () => (
+  <form>
+    <input type="text" placeholder="Search..." />
+    <label>
+      <input type="checkbox" />
+      {""} Only show products in stock
+    </label>
+  </form>
+);
+
+const FilterableProductTable = ({ products }) => (
+  <div>
+    <SearchBar />
+    <ProductTable products={products} />
+  </div>
+);
+
 export default function App() {
-  return <div className="avatar"></div>;
+  return (
+    <div className="avatar">
+      <FilterableProductTable products={PRODUCTS} />
+    </div>
+  );
 }
