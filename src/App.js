@@ -1,22 +1,32 @@
 import "./App.css";
 
-const user = {
-  name: "Sigmund Freud",
-  imgUrl: "https://picsum.photos/200",
-  imgSize: 500,
+const products = [
+  { title: "Cabbage", isFruit: false, id: 1 },
+  { title: "Garlic", isFruit: false, id: 2 },
+  { title: "Apple", isFruit: true, id: 3 },
+];
+
+const Render = () => {
+  const listItems = products.map((product) => (
+    <li
+      key={product.id}
+      style={{ color: product.isFruit ? "magenta" : "darkgreen" }}
+    >
+      {product.title}
+    </li>
+  ));
+  return <ul>{listItems}</ul>;
 };
 
-const check=false;
+function handleClick() {
+  alert("What are u clicking at?");
+}
 
 export default function App() {
-  return check &&(
+  return (
     <div className="avatar">
-      <h1>{user.name}</h1>
-      <img
-        src={user.imgUrl}
-        style={{ width: user.imgSize, height: user.imgSize }}
-        alt={"userfdsa" + user.name}
-      />
+      <button onClick={handleClick}>CLICKER</button>
+      <Render />
     </div>
   );
 }
