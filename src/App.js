@@ -1,11 +1,6 @@
-import './App.css';
+const Greeting = ({ name }) => <h1>Hello {name}</h1>;
 
-function App() {
-  return (
-    <div className="App">
-      <h1>Hi</h1>
-    </div>
-  );
+export default function App() {
+  return <Greeting name='Hoang'/>
 }
 
-export default App;
