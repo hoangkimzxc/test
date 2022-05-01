@@ -1,16 +1,26 @@
-import "./App.css";
-
-const Cup = ({ guest }) => {
-  return <h2>Tea cup for guest #{guest}</h2>;
-};
+import { sculptureList } from "./data.js";
+import { useState } from "react";
 
 export default function App() {
+  const [index, setIndex] = useState(0);
+  const handleClick = () => {
+    setIndex(index + 1);
+  };
+
+  let sculpture = sculptureList[index];
   return (
-    <div className="avatar">
-      <Cup guest={1} />
-      <Cup guest={2} />
-      <Cup guest={3} />
-      <Cup guest={4} />
+    <div>
+      <button onClick={handleClick}>Next</button>
+      <h2>
+        <i>
+          {sculpture.name} by{sculpture.artist}
+        </i>
+      </h2>
+      <h3>
+        {index + 1} of {sculptureList.length}
+      </h3>
+      <img src={sculpture.url} alt={sculpture.alt} />
+      <p>{sculpture.description}</p>
     </div>
   );
 }
