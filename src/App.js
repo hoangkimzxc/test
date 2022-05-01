@@ -1,19 +1,23 @@
 import "./App.css";
-
-const Item = ({ name, isPacked }) => (
-  <li>
-    {name}
-    {isPacked && "(check)"}
-  </li>
-);
+import { people } from "./data.js";
+import { getImageUrl } from "./utils.js";
 
 export default function App() {
-  return <div className="avatar">
-    <h1>Sally Ride's Packing List</h1>
-    <ul>
-      <Item isPacked={true} name='Space suit'/>
-      <Item isPacked={true} name='Helmet with a golden leaf'/>
-      <Item isPacked={false} name='Photo of Tam'/>
-    </ul>
-  </div>;
+  const listItem = people.map((person) => (
+    <li key={person.id}>
+      <img src={getImageUrl(person)} alt={person.name} />
+      <p>
+        <b>{person.name}:</b>
+        {" " + person.profession + " "} know for {person.accomplishment}
+      </p>
+    </li>
+  ));
+  return (
+    <div className="avatar">
+      <article>
+        <h1>Scientists</h1>
+        <ul>{listItem}</ul>
+      </article>
+    </div>
+  );
 }
