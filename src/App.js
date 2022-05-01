@@ -1,27 +1,19 @@
 import "./App.css";
-import { getImageUrl } from "./utils";
 
-const Avatar = ({ person, size }) => (
-  <img
-    className="ava"
-    src={getImageUrl(person)}
-    alt={person.name}
-    width={size}
-    height={size}
-  />
+const Item = ({ name, isPacked }) => (
+  <li>
+    {name}
+    {isPacked && "(check)"}
+  </li>
 );
 
-const Card = ({ children }) => <div className="card">{children}</div>;
-
 export default function App() {
-  return (
-    <div className="avatar">
-      <Card>
-        <Avatar
-          size={100}
-          person={{ name: "Katsuko Saruhashi", imageId: "YfeOqp2" }}
-        />
-      </Card>
-    </div>
-  );
+  return <div className="avatar">
+    <h1>Sally Ride's Packing List</h1>
+    <ul>
+      <Item isPacked={true} name='Space suit'/>
+      <Item isPacked={true} name='Helmet with a golden leaf'/>
+      <Item isPacked={false} name='Photo of Tam'/>
+    </ul>
+  </div>;
 }
